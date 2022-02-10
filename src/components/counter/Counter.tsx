@@ -1,25 +1,40 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import style from './counter.module.css';
 import {useSelector} from "react-redux";
 import {rootReducerType} from "../store/store";
 
 export function Counter() {
-    const massage = useSelector<rootReducerType, string | number>(state => state.counter.messagesOnCounter)
+    // const massage = useSelector<rootReducerType, string | number>(state => state.counter.messagesOnCounter);
+    const [displayValue, setDisplayValue] = useState(0)
     const minNumber = useSelector<rootReducerType, number>(state => state.counter.minCounter);
     const maxNumber = useSelector<rootReducerType, number>(state => state.counter.maxCounter);
-const setButton = useSelector<rootReducerType, boolean>(state=>state.counter.setButton)
+    useEffect(()=>{
+       let startValue = localStorage.getItem('StartValue')
+        if (startValue){
+            setDisplayValue(Number(startValue))
+        }
+    },[])
+
+    const incHandler = () => {
+        setDisplayValue(displayValue +1)
+    }
+    const resetButtonHandler = () => {
+        setDisplayValue(minNumber)
+    }
 
     return (
         <div className={style.counter}>
             <div className={style.counterName}>
                 This is my counter
             </div>
-            <div >
-                <div className={style.lcd}>{ setButton ? minNumber: massage}</div>
+            <div>
+                <div className={style.lcd}>{displayValue}</div>
             </div>
             <div className={'buttons'}>
-                <button disabled={false} onClick={()=>{}}>inc</button>
-                <button disabled={false} onClick={()=>{}}>res</button>
+                <button disabled={displayValue === maxNumber} onClick={incHandler}>inc
+                </button>
+                <button disabled={minNumber === displayValue} onClick={resetButtonHandler}>res
+                </button>
             </div>
         </div>
     );
