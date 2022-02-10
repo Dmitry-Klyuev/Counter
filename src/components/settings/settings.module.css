@@ -1,0 +1,39 @@
+.settings {
+    width: 500px;
+    height: 300px;
+    border: 5px solid #282c34;
+    margin: 50px 0 0 30px;
+    border-radius: 15px;
+}
+
+.settingsName{
+    margin: 10px;
+    background-color: #5F9EA0;
+    text-transform: uppercase;
+    font-size: 40px;
+    color: #ebebeb;
+    border-radius: 15px;
+}
+.input{
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.input span {
+    margin-right: 50px;
+}
+
+.input input{
+    height: 20px;
+    margin-bottom: 5px;
+
+}
+
+.error{
+    height: 15px;
+    color: red;
+}
+
+
+
